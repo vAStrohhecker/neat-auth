@@ -24,11 +24,13 @@ module.exports = function (passport, config, webserver) {
             let invalidCredentials = false;
 
             if (err) {
-                invalidCredentials = true;
                 return done("invalid_credentials");
             } else if (res.statusCode !== 200) {
                 if (body.activation) {
                     return done("not_activated");
+                }
+                if (body.username && body.username === "user.blocked") {
+                    return done("user_blocked");
                 }
 
                 invalidCredentials = true;
