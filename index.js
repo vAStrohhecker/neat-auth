@@ -42,7 +42,7 @@ module.exports = class Auth extends Module {
                  */
                 Application.modules[this.config.webserverModuleName].addMiddleware(null, passport.initialize(), 0);
                 Application.modules[this.config.webserverModuleName].addMiddleware(null, passport.session({
-                    pauseStream: true,
+                    pauseStream: false,
                 }), 1);
 
                 /*
